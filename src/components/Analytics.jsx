@@ -32,21 +32,21 @@ const Analytics = () => {
 			const { default: dataFromJson } = await import(
 				`../data/${anYear}/${analyticsType}.json`
 			);
-			console.log(dataFromJson);
+			// console.log(dataFromJson);
 			let returnData = [];
 			if (coc) {
 				// If you have the counselling code
 				returnData = _.filter(dataFromJson, (clg) => {
 					const valid = clg.coc === parseInt(coc);
 					if (valid) {
-						console.log("returning Counselling Code data");
+						// console.log("returning Counselling Code data");
 					}
 					return valid;
 				});
-				console.log(returnData);
+				// console.log(returnData);
 			} else {
 				// No valid input
-				console.log("returning no data");
+				// console.log("returning no data");
 			}
 			analyticsYearWiseRanking.push({ year: anYear, data: returnData });
 		}
@@ -58,7 +58,7 @@ const Analytics = () => {
 	useEffect(filterIt, [dept, analyticsType]);
 
 	useEffect(() => {
-		console.log(rawData);
+		// console.log(rawData);
 		let labelsStage = [];
 		let deptsStage = new Set();
 		let bcData = [];
@@ -82,8 +82,8 @@ const Analytics = () => {
 				}
 			});
 		});
-		console.log({ labels: labelsStage });
-		console.log({ deptsStage });
+		// console.log({ labels: labelsStage });
+		// console.log({ deptsStage });
 		setDepts(Array.from(deptsStage).sort());
 		setLabels(labelsStage);
 		setChartDatasets([
@@ -140,7 +140,7 @@ const Analytics = () => {
 	}, [rawData]);
 
 	useEffect(() => {
-		console.log(chartDatasets);
+		// console.log(chartDatasets);
 	}, [chartDatasets]);
 
 	const options = {
@@ -158,7 +158,7 @@ const Analytics = () => {
 
 	const gotoDept = (e) => {
 		const aDept = e.target.innerHTML;
-		console.log(aDept);
+		// console.log(aDept);
 		setDept(aDept);
 		history.push(`/data/analytics/${coc}?dept=${aDept}&type=${analyticsType}`);
 	};
@@ -182,7 +182,7 @@ const Analytics = () => {
 
 	const gotoType = (e) => {
 		const aType = e.target.innerHTML.toLowerCase();
-		console.log(aType);
+		// console.log(aType);
 		setAnalyticsType(aType);
 		history.push(`/data/analytics/${coc}?dept=${dept}&type=${aType}`);
 	};

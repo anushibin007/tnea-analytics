@@ -17,17 +17,17 @@ const CutoffRanking = () => {
 
 	const filterIt = async () => {
 		const { default: dataFromJson } = await import(`../data/${year}/${searchType}.json`);
-		console.log(dataFromJson);
+		// console.log(dataFromJson);
 		if (con && con.length > 0) {
 			// If you have the College Name
 			const returnData = _.filter(dataFromJson, (clg) => {
 				const valid = clg.con.toUpperCase().includes(con.toUpperCase());
 				if (valid) {
-					console.log("returning College Name data");
+					// console.log("returning College Name data");
 				}
 				return valid;
 			});
-			console.log(returnData);
+			// console.log(returnData);
 			setData(returnData);
 			return returnData;
 		} else if (coc) {
@@ -35,16 +35,16 @@ const CutoffRanking = () => {
 			const returnData = _.filter(dataFromJson, (clg) => {
 				const valid = clg.coc === parseInt(coc);
 				if (valid) {
-					console.log("returning Counselling Code data");
+					// console.log("returning Counselling Code data");
 				}
 				return valid;
 			});
-			console.log(returnData);
+			// console.log(returnData);
 			setData(returnData);
 			return returnData;
 		} else {
 			// No valid input
-			console.log("returning no data");
+			// console.log("returning no data");
 			const returnData = [];
 			setData(returnData);
 			return returnData;
@@ -57,7 +57,7 @@ const CutoffRanking = () => {
 
 	const gotoYear = (e) => {
 		const anYear = e.target.innerHTML;
-		console.log(anYear);
+		// console.log(anYear);
 		setYear(anYear);
 		history.push(`/data/${searchType}/${coc}?year=${anYear}`);
 	};
