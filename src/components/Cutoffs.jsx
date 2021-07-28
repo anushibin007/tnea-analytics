@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 import _ from "lodash";
 import { useParams, useLocation, useHistory } from "react-router-dom";
-import { NavLink, Pagination, Button, Row, Col } from "react-bootstrap";
+import { Pagination, Row, Col } from "react-bootstrap";
 
 const Cutoffs = () => {
 	let query = useQuery();

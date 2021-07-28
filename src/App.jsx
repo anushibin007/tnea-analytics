@@ -14,7 +14,7 @@ function App() {
 				<Navigation />
 				<Switch>
 					<Route path="/" exact component={Welcome} />
-					<Route path="/cutoffs" exact component={CollegeSearch} />
+					<Route path="/search" exact component={CollegeSearch} />
 					<Route path="/cutoffs/coc/:coc" exact component={Cutoffs} />
 					<Route path="/cutoffs/con/:con" exact component={Cutoffs} />
 				</Switch>
