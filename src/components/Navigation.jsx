@@ -1,7 +1,7 @@
 import "../App.css";
 import "../css/navbar.css";
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { Navbar, Container, Nav } from "react-bootstrap";
 
 function Navigation() {
@@ -9,21 +9,18 @@ function Navigation() {
 		<React.Fragment>
 			<Navbar bg="primary" variant="dark">
 				<Container>
-					<Navbar.Brand as={NavLink} to="/" exact>
+					<Navbar.Brand as={Link} to="/">
 						TNEA Analytics
 					</Navbar.Brand>
 					<Nav className="me-auto">
-						<Nav.Link as={NavLink} to="/" exact>
-							Home
-						</Nav.Link>
-						<Nav.Link as={NavLink} to="/search/analytics">
-							Analytics
-						</Nav.Link>
 						<Nav.Link as={NavLink} to="/search/cutoff">
-							Cutoffs
+							Cut-off data 👨‍🎓
 						</Nav.Link>
 						<Nav.Link as={NavLink} to="/search/ranking">
-							Rankings
+							Ranking data 💹
+						</Nav.Link>
+						<Nav.Link as={NavLink} to="/search/analytics" activeClassName="active">
+							Analytics 📊
 						</Nav.Link>
 					</Nav>
 				</Container>
