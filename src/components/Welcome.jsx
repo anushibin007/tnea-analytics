@@ -40,19 +40,7 @@ const Welcome = () => {
 					<Col className="col-12">
 						<h1>Pick a page to begin with</h1>
 					</Col>
-					<Col>
-						<Card>
-							<Card.Body>
-								<Card.Title>Analytics 📊</Card.Title>
-								<Card.Text>
-									See graph charts for each college department-wise, showing a
-									history of rankings an cut-offs from the years 2017 up to 2020.
-								</Card.Text>
-								<Button onClick={goToAnalytics}>Visit Analytics</Button>
-							</Card.Body>
-						</Card>
-					</Col>
-					<Col>
+					<Col className="align-items-stretch d-flex">
 						<Card>
 							<Card.Body>
 								<Card.Title>Cutoffs 👨‍🎓</Card.Title>
@@ -64,7 +52,7 @@ const Welcome = () => {
 							</Card.Body>
 						</Card>
 					</Col>
-					<Col>
+					<Col className="align-items-stretch d-flex">
 						<Card>
 							<Card.Body>
 								<Card.Title>Rankings 💹</Card.Title>
@@ -73,6 +61,18 @@ const Welcome = () => {
 									department, year-wise.
 								</Card.Text>
 								<Button onClick={goToRankings}>Visit Rankings</Button>
+							</Card.Body>
+						</Card>
+					</Col>
+					<Col className="align-items-stretch d-flex">
+						<Card>
+							<Card.Body>
+								<Card.Title>Analytics 📊</Card.Title>
+								<Card.Text>
+									See graph charts for each college department-wise, showing a
+									history of rankings an cut-offs from the years 2017 up to 2020.
+								</Card.Text>
+								<Button onClick={goToAnalytics}>Visit Analytics</Button>
 							</Card.Body>
 						</Card>
 					</Col>

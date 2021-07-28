@@ -14,13 +14,13 @@ function Navigation() {
 					</Navbar.Brand>
 					<Nav className="me-auto">
 						<Nav.Link as={NavLink} to="/search/cutoff">
-							Cut-off data 👨‍🎓
+							Cut-off data
 						</Nav.Link>
 						<Nav.Link as={NavLink} to="/search/ranking">
-							Ranking data 💹
+							Ranking data
 						</Nav.Link>
 						<Nav.Link as={NavLink} to="/search/analytics" activeClassName="active">
-							Analytics 📊
+							Analytics
 						</Nav.Link>
 					</Nav>
 				</Container>
