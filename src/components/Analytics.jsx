@@ -84,7 +84,7 @@ const Analytics = () => {
 		});
 		console.log({ labels: labelsStage });
 		console.log({ deptsStage });
-		setDepts(Array.from(deptsStage));
+		setDepts(Array.from(deptsStage).sort());
 		setLabels(labelsStage);
 		setChartDatasets([
 			{
