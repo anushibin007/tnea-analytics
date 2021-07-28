@@ -19,7 +19,7 @@ function Navigation() {
 						<Nav.Link as={NavLink} to="/search/ranking">
 							Ranking data
 						</Nav.Link>
-						<Nav.Link as={NavLink} to="/search/analytics" activeClassName="active">
+						<Nav.Link as={NavLink} to="/search/analytics">
 							Analytics
 						</Nav.Link>
 					</Nav>
