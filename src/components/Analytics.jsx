@@ -208,16 +208,14 @@ const Analytics = () => {
 	return (
 		<React.Fragment>
 			<Row>
-				<Col className="col-6">
-					<Pagination size="md" className="my-3">
-						{getDeptPagination()}
-					</Pagination>
-				</Col>
-				<Col className="col-6">
-					<Pagination size="md" className="my-3">
-						{getTypePagination()}
-					</Pagination>
-				</Col>
+				<Pagination size="md" className="my-3">
+					{getDeptPagination()}
+				</Pagination>
+			</Row>
+			<Row>
+				<Pagination size="md" className="my-3">
+					{getTypePagination()}
+				</Pagination>
 			</Row>
 			<Row>
 				<Line data={{ labels: labels, datasets: chartDatasets }} options={options} />
