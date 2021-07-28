@@ -16,12 +16,22 @@ const Analytics = () => {
 
 	const [chartDatasets, setChartDatasets] = useState([]);
 
+	const [labels, setLabels] = useState([]);
+
 	const [dept, setDept] = useState(query.get("dept") ? query.get("dept") : "CS");
+
+	const [depts, setDepts] = useState([]);
+
+	const [analyticsType, setAnalyticsType] = useState(
+		query.get("type") ? query.get("type") : "ranking"
+	);
 
 	const filterIt = async () => {
 		let analyticsYearWiseRanking = [];
 		for (let anYear = 2017; anYear <= 2020; anYear++) {
-			const { default: dataFromJson } = await import(`../data/${anYear}/ranking.json`);
+			const { default: dataFromJson } = await import(
+				`../data/${anYear}/${analyticsType}.json`
+			);
 			console.log(dataFromJson);
 			let returnData = [];
 			if (coc) {
@@ -45,10 +55,12 @@ const Analytics = () => {
 
 	useEffect(filterIt, []);
 
-	useEffect(filterIt, [dept]);
+	useEffect(filterIt, [dept, analyticsType]);
 
 	useEffect(() => {
 		console.log(rawData);
+		let labelsStage = [];
+		let deptsStage = new Set();
 		let bcData = [];
 		let bcmData = [];
 		let mbcData = [];
@@ -58,16 +70,22 @@ const Analytics = () => {
 		let stData = [];
 		rawData.map((aRawData) => {
 			aRawData.data.map((aDept) => {
+				deptsStage.add(aDept.brc);
 				if (aDept.brc === dept) {
-					bcData.push(aDept.BC ? aDept.BC : 1);
-					bcmData.push(aDept.BCM ? aDept.BCM : 1);
-					mbcData.push(aDept.MBC ? aDept.MBC : 1);
-					ocData.push(aDept.OC ? aDept.OC : 1);
-					scData.push(aDept.SC ? aDept.SC : 1);
-					stData.push(aDept.ST ? aDept.ST : 1);
+					labelsStage.push(aRawData.year);
+					bcData.push(aDept.BC ? aDept.BC : 0);
+					bcmData.push(aDept.BCM ? aDept.BCM : 0);
+					mbcData.push(aDept.MBC ? aDept.MBC : 0);
+					ocData.push(aDept.OC ? aDept.OC : 0);
+					scData.push(aDept.SC ? aDept.SC : 0);
+					stData.push(aDept.ST ? aDept.ST : 0);
 				}
 			});
 		});
+		console.log({ labels: labelsStage });
+		console.log({ deptsStage });
+		setDepts(Array.from(deptsStage));
+		setLabels(labelsStage);
 		setChartDatasets([
 			{
 				label: "BC",
@@ -142,12 +160,11 @@ const Analytics = () => {
 		const aDept = e.target.innerHTML;
 		console.log(aDept);
 		setDept(aDept);
-		history.push(`/data/analytics/${coc}?dept=${aDept}`);
+		history.push(`/data/analytics/${coc}?dept=${aDept}&type=${analyticsType}`);
 	};
 
-	const getPagination = () => {
+	const getDeptPagination = () => {
 		let items = [];
-		const depts = ["BM", "CE", "CS", "EC", "EE", "IT", "ME"];
 		depts.map((aDept) => {
 			items.push(
 				<Pagination.Item
@@ -163,20 +180,47 @@ const Analytics = () => {
 		return items;
 	};
 
+	const gotoType = (e) => {
+		const aType = e.target.innerHTML.toLowerCase();
+		console.log(aType);
+		setAnalyticsType(aType);
+		history.push(`/data/analytics/${coc}?dept=${dept}&type=${aType}`);
+	};
+
+	const getTypePagination = () => {
+		let items = [];
+		const depts = ["Ranking", "Cutoff"];
+		depts.map((aType) => {
+			items.push(
+				<Pagination.Item
+					key={aType}
+					active={analyticsType.toLowerCase() === aType.toLowerCase()}
+					onClick={gotoType}
+					activeLabel=""
+				>
+					{aType}
+				</Pagination.Item>
+			);
+		});
+		return items;
+	};
+
 	return (
 		<React.Fragment>
 			<Row>
-				<Col>
+				<Col className="col-6">
 					<Pagination size="md" className="my-3">
-						{getPagination()}
+						{getDeptPagination()}
+					</Pagination>
+				</Col>
+				<Col className="col-6">
+					<Pagination size="md" className="my-3">
+						{getTypePagination()}
 					</Pagination>
 				</Col>
 			</Row>
 			<Row>
-				<Line
-					data={{ labels: ["2017", "2018", "2019", "2020"], datasets: chartDatasets }}
-					options={options}
-				/>
+				<Line data={{ labels: labels, datasets: chartDatasets }} options={options} />
 			</Row>
 		</React.Fragment>
 	);
