@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import { Container } from "react-bootstrap";
 import Navigation from "./components/Navigation";
@@ -7,8 +7,12 @@ import Welcome from "./components/Welcome";
 import CollegeSearch from "./components/CollegeSearch";
 import CutoffRanking from "./components/CutoffRanking";
 import Analytics from "./components/Analytics";
+import Firebase from "./utils/Firebase";
 
 function App() {
+	useEffect(() => {
+		Firebase.init();
+	}, []);
 	return (
 		<Router>
 			<Container>
