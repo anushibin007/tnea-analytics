@@ -16,7 +16,7 @@ function Navigation() {
 						<Nav.Link as={NavLink} to="/" exact>
 							Home
 						</Nav.Link>
-						<Nav.Link as={NavLink} to="/analytics">
+						<Nav.Link as={NavLink} to="/search/analytics">
 							Analytics
 						</Nav.Link>
 						<Nav.Link as={NavLink} to="/search/cutoff">
