@@ -24,17 +24,13 @@ const CollegeSearch = () => {
 	}, [clgName]);
 
 	const filterIt = () => {
-		if (clgName && clgName.length > 0) {
-			const filteredArray = _.filter(cutoff2020, (clg) => {
-				return (
-					clg.con.toUpperCase().includes(clgName.toUpperCase()) ||
-					clg.coc === parseInt(clgName)
-				);
-			});
-			return _.uniqBy(filteredArray, "coc");
-		} else {
-			return [];
-		}
+		const filteredArray = _.filter(cutoff2020, (clg) => {
+			return (
+				clg.con.toUpperCase().includes(clgName.toUpperCase()) ||
+				clg.coc === parseInt(clgName)
+			);
+		});
+		return _.uniqBy(filteredArray, "coc");
 	};
 
 	const getCell = (row, rowKey) => {
@@ -69,6 +65,7 @@ const CollegeSearch = () => {
 					aria-describedby="basic-addon1"
 					value={clgName}
 					onChange={clgNameChanged}
+					placeholder="🔍 Search here"
 				/>
 			</InputGroup>
 			<DataTable
