@@ -5,7 +5,7 @@ import Navigation from "./components/Navigation";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Welcome from "./components/Welcome";
 import CollegeSearch from "./components/CollegeSearch";
-import Cutoffs from "./components/Cutoffs";
+import CutoffRanking from "./components/CutoffRanking";
 
 function App() {
 	return (
@@ -14,9 +14,8 @@ function App() {
 				<Navigation />
 				<Switch>
 					<Route path="/" exact component={Welcome} />
-					<Route path="/search" exact component={CollegeSearch} />
-					<Route path="/cutoffs/coc/:coc" exact component={Cutoffs} />
-					<Route path="/cutoffs/con/:con" exact component={Cutoffs} />
+					<Route path="/search/:searchType" exact component={CollegeSearch} />
+					<Route path="/data/:searchType/:coc" exact component={CutoffRanking} />
 				</Switch>
 			</Container>
 		</Router>

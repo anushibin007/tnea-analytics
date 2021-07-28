@@ -4,23 +4,23 @@ import _ from "lodash";
 import { useParams, useLocation, useHistory } from "react-router-dom";
 import { Pagination, Row, Col } from "react-bootstrap";
 
-const Cutoffs = () => {
+const CutoffRanking = () => {
 	let query = useQuery();
 
 	const history = useHistory();
 
-	let { coc, con } = useParams();
+	let { coc, con, searchType } = useParams();
 
 	const [data, setData] = useState([]);
 
 	const [year, setYear] = useState(query.get("year") ? query.get("year") : 2020);
 
 	const filterIt = async () => {
-		const { default: cutoff2020 } = await import(`../data/${year}/cutoff.json`);
-		console.log(cutoff2020);
+		const { default: dataFromJson } = await import(`../data/${year}/${searchType}.json`);
+		console.log(dataFromJson);
 		if (con && con.length > 0) {
 			// If you have the College Name
-			const returnData = _.filter(cutoff2020, (clg) => {
+			const returnData = _.filter(dataFromJson, (clg) => {
 				const valid = clg.con.toUpperCase().includes(con.toUpperCase());
 				if (valid) {
 					console.log("returning College Name data");
@@ -32,7 +32,7 @@ const Cutoffs = () => {
 			return returnData;
 		} else if (coc) {
 			// If you have the counselling code
-			const returnData = _.filter(cutoff2020, (clg) => {
+			const returnData = _.filter(dataFromJson, (clg) => {
 				const valid = clg.coc === parseInt(coc);
 				if (valid) {
 					console.log("returning Counselling Code data");
@@ -59,7 +59,7 @@ const Cutoffs = () => {
 		const anYear = e.target.innerHTML;
 		console.log(anYear);
 		setYear(anYear);
-		history.push(`/cutoffs/coc/${coc}?year=${anYear}`);
+		history.push(`/data/${searchType}/${coc}?year=${anYear}`);
 	};
 
 	const getPagination = () => {
@@ -154,4 +154,4 @@ const useQuery = () => {
 	return new URLSearchParams(useLocation().search);
 };
 
-export default Cutoffs;
+export default CutoffRanking;

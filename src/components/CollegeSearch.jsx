@@ -3,14 +3,20 @@ import cutoff2020 from "../data/2020/cutoff.json";
 import { InputGroup, FormControl, Button } from "react-bootstrap";
 import DataTable from "react-data-table-component";
 import _ from "lodash";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 
 const CollegeSearch = () => {
 	const [clgName, setClgName] = useState("");
 
+	const { searchType } = useParams();
+
 	const clgNameChanged = (e) => {
 		setClgName(e.target.value);
 	};
+
+	useEffect(() => {
+		console.log(searchType);
+	}, [searchType]);
 
 	useEffect(() => {
 		// console.log(filterIt().length);
@@ -25,10 +31,14 @@ const CollegeSearch = () => {
 					clg.coc === parseInt(clgName)
 				);
 			});
-			return _.uniqBy(filteredArray, "con");
+			return _.uniqBy(filteredArray, "coc");
 		} else {
 			return [];
 		}
+	};
+
+	const getCell = (row, rowKey) => {
+		return <NavLink to={`/data/${searchType}/${row.coc}?year=2020`}>{row[rowKey]}</NavLink>;
 	};
 
 	const columns = [
@@ -37,13 +47,13 @@ const CollegeSearch = () => {
 			selector: (row) => row.con,
 			sortable: true,
 			width: "500px",
-			cell: (row) => <NavLink to={`/cutoffs/coc/${row.coc}?year=2020`}>{row.con}</NavLink>,
+			cell: (row) => getCell(row, "con"),
 		},
 		{
 			name: "Counselling Code",
 			selector: (row) => row.coc,
 			sortable: true,
-			cell: (row) => <NavLink to={`/cutoffs/coc/${row.coc}?year=2020`}>{row.coc}</NavLink>,
+			cell: (row) => getCell(row, "coc"),
 		},
 	];
 	return (
