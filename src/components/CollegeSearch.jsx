@@ -46,7 +46,7 @@ const CollegeSearch = () => {
 			cell: (row) => getCell(row, "con"),
 		},
 		{
-			name: "Counselling Code",
+			name: "Counseling Code",
 			selector: (row) => row.coc,
 			sortable: true,
 			cell: (row) => getCell(row, "coc"),
@@ -58,7 +58,7 @@ const CollegeSearch = () => {
 				<InputGroup.Text id="basic-addon1">
 					College Name or
 					<br />
-					Address or Counselling Code
+					Address or Counseling Code
 				</InputGroup.Text>
 				<FormControl
 					aria-label="College Name/Address"

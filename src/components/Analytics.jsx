@@ -35,11 +35,11 @@ const Analytics = () => {
 			// console.log(dataFromJson);
 			let returnData = [];
 			if (coc) {
-				// If you have the counselling code
+				// If you have the counseling code
 				returnData = _.filter(dataFromJson, (clg) => {
 					const valid = clg.coc === parseInt(coc);
 					if (valid) {
-						// console.log("returning Counselling Code data");
+						// console.log("returning Counseling Code data");
 					}
 					return valid;
 				});

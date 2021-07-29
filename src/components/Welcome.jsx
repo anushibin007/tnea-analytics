@@ -93,13 +93,13 @@ const Welcome = () => {
 							>
 								official TNEA site
 							</a>{" "}
-							provided by Anna University. But do note that all data in this site was
+							provided by Anna University. But do note that all data on this site was
 							taken from the official site. Below listed are some of the main points
 							where this site stands out:
 						</p>
 						<ul>
 							<li className="my-3">
-								<b>Super fast</b> &amp; <b>responsive</b> website developed on React
+								<b>Superfast</b> &amp; <b>responsive</b> website developed on React
 								JS using Bootstrap for styling ⚡
 							</li>
 							<li className="my-3">
@@ -108,16 +108,16 @@ const Welcome = () => {
 							</li>
 							<li className="my-3">
 								You can <b>bookmark</b> any page that you visit and load it and use
-								it or share it friends. In the official site, you need to open the
-								website and make a search every time you need to see an already seen
-								data 🔗
+								it or share it with friends. On the official site, you need to open
+								the website and make a search every time you need to see an already
+								seen data 🔗
 							</li>
 							<li className="my-3">
-								Search colleges by <b>counselling code</b>, which is not doable on
+								Search colleges by <b>counseling code</b>, which is not doable on
 								the official site 🔢
 							</li>
 							<li className="my-3">
-								Analytics data available as <b>graphs</b> to see the trend in
+								Analytics data is available as <b>graphs</b> to see the trend in
 								cut-off and ranking history. This will help you make a good{" "}
 								<b>prediction</b> as to what might be the cutoff for the upcoming
 								year 📈
@@ -128,7 +128,7 @@ const Welcome = () => {
 							</li>
 							<li className="my-3">
 								All data and search forms are <b>loaded as you type</b> your query.
-								Which means you need not look for the submit button and wait for the
+								This means you need not look for the submit button and wait for the
 								response every time you make a new query ✨
 							</li>
 							<li className="my-3">
@@ -138,12 +138,12 @@ const Welcome = () => {
 								<b>no lag</b> or wait times for DB queries or server requests 🔥
 							</li>
 							<li className="my-3">
-								This site is totally <b>ad-free</b> and <b>available forever</b>,
+								This site is <b>completely ad-free</b> and <b>available forever</b>,
 								even after the TNEA admissions are over 🕐
 							</li>
 							<li className="my-3">
-								Average time to get data for a specific college in the official site
-								is around <b>20 seconds</b>. In this site it takes just{" "}
+								The average time to get data for a specific college on the official
+								site is around <b>20 seconds</b>. On this site, it takes just{" "}
 								<b>5 seconds</b>. You can even bookmark the search link and revisit
 								it again 🚀
 							</li>
