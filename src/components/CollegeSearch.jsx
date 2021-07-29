@@ -42,7 +42,7 @@ const CollegeSearch = () => {
 			name: "College Name",
 			selector: (row) => row.con,
 			sortable: true,
-			width: "500px",
+			grow: 10,
 			cell: (row) => getCell(row, "con"),
 		},
 		{
@@ -54,8 +54,8 @@ const CollegeSearch = () => {
 	];
 	return (
 		<React.Fragment>
-			<InputGroup>
-				<InputGroup.Text id="basic-addon1">
+			<InputGroup className="my-3">
+				<InputGroup.Text id="basic-addon1" className="bg-primary text-white">
 					College Name or
 					<br />
 					Address or Counseling Code
@@ -66,6 +66,7 @@ const CollegeSearch = () => {
 					value={clgName}
 					onChange={clgNameChanged}
 					placeholder="🔍 Search here"
+					autoFocus
 				/>
 			</InputGroup>
 			<DataTable
