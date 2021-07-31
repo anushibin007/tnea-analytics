@@ -61,7 +61,7 @@ const CollegeSearch = () => {
 						</Row>
 					</Col>
 					<Col md={12} lg={10} className="align-items-stretch d-flex px-0">
-						<FormControl aria-label="College Name/Address" aria-describedby="basic-addon1" value={clgName} onChange={clgNameChanged} placeholder="🔍 Search here" autoFocus />
+						<FormControl aria-label="College Name/Address" aria-describedby="basic-addon1" value={clgName} onChange={clgNameChanged} placeholder={`🔍 Search ${_.capitalize(searchType)} data here`} autoFocus />
 					</Col>
 				</Row>
 			</Container>
