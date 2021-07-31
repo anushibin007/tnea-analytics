@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 import _ from "lodash";
 import { useParams, useLocation, useHistory } from "react-router-dom";
-import { Pagination, Row, Col } from "react-bootstrap";
+import { Pagination, Row, Col, Spinner } from "react-bootstrap";
 import { Line } from "react-chartjs-2";
 
 const Analytics = () => {
@@ -22,16 +22,12 @@ const Analytics = () => {
 
 	const [depts, setDepts] = useState([]);
 
-	const [analyticsType, setAnalyticsType] = useState(
-		query.get("type") ? query.get("type") : "ranking"
-	);
+	const [analyticsType, setAnalyticsType] = useState(query.get("type") ? query.get("type") : "ranking");
 
 	const filterIt = async () => {
 		let analyticsYearWiseRanking = [];
 		for (let anYear = 2017; anYear <= 2020; anYear++) {
-			const { default: dataFromJson } = await import(
-				`../data/${anYear}/${analyticsType}.json`
-			);
+			const { default: dataFromJson } = await import(`../data/${anYear}/${analyticsType}.json`);
 			// console.log(dataFromJson);
 			let returnData = [];
 			if (coc) {
@@ -167,12 +163,7 @@ const Analytics = () => {
 		let items = [];
 		depts.map((aDept) => {
 			items.push(
-				<Pagination.Item
-					key={aDept}
-					active={dept === aDept}
-					onClick={gotoDept}
-					activeLabel=""
-				>
+				<Pagination.Item key={aDept} active={dept === aDept} onClick={gotoDept} activeLabel="">
 					{aDept}
 				</Pagination.Item>
 			);
@@ -192,17 +183,26 @@ const Analytics = () => {
 		const depts = ["Ranking", "Cutoff"];
 		depts.map((aType) => {
 			items.push(
-				<Pagination.Item
-					key={aType}
-					active={analyticsType.toLowerCase() === aType.toLowerCase()}
-					onClick={gotoType}
-					activeLabel=""
-				>
+				<Pagination.Item key={aType} active={analyticsType.toLowerCase() === aType.toLowerCase()} onClick={gotoType} activeLabel="">
 					{aType}
 				</Pagination.Item>
 			);
 		});
 		return items;
+	};
+
+	const renderChart = () => {
+		if (chartDatasets.length > 0) {
+			return <Line data={{ labels: labels, datasets: chartDatasets }} options={options} />;
+		} else {
+			return (
+				<Col>
+					<h1 className="text-center">
+						<Spinner animation="border" variant="primary" /> Loading data. Please wait...
+					</h1>
+				</Col>
+			);
+		}
 	};
 
 	return (
@@ -217,9 +217,7 @@ const Analytics = () => {
 					{getTypePagination()}
 				</Pagination>
 			</Row>
-			<Row>
-				<Line data={{ labels: labels, datasets: chartDatasets }} options={options} />
-			</Row>
+			<Row>{renderChart()}</Row>
 		</React.Fragment>
 	);
 };
