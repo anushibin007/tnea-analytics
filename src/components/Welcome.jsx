@@ -70,7 +70,7 @@ const Welcome = () => {
 								<Card.Title>Analytics 📊</Card.Title>
 								<Card.Text>
 									See graph charts for each college department-wise, showing a
-									history of rankings an cut-offs from the years 2017 up to 2020.
+									history of rankings and cut-offs from the years 2017 up to 2020.
 								</Card.Text>
 								<Button onClick={goToAnalytics}>Visit Analytics</Button>
 							</Card.Body>
