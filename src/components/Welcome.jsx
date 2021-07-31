@@ -40,7 +40,7 @@ const Welcome = () => {
 					<Col className="col-12">
 						<h1>Pick a page to begin with</h1>
 					</Col>
-					<Col className="align-items-stretch d-flex">
+					<Col className="align-items-stretch d-flex my-3" md={12} lg={4}>
 						<Card>
 							<Card.Body>
 								<Card.Title>Cutoffs 👨‍🎓</Card.Title>
@@ -52,7 +52,7 @@ const Welcome = () => {
 							</Card.Body>
 						</Card>
 					</Col>
-					<Col className="align-items-stretch d-flex">
+					<Col className="align-items-stretch d-flex my-3" md={12} lg={4}>
 						<Card>
 							<Card.Body>
 								<Card.Title>Rankings 💹</Card.Title>
@@ -64,7 +64,7 @@ const Welcome = () => {
 							</Card.Body>
 						</Card>
 					</Col>
-					<Col className="align-items-stretch d-flex">
+					<Col className="align-items-stretch d-flex my-3" md={12} lg={4}>
 						<Card>
 							<Card.Body>
 								<Card.Title>Analytics 📊</Card.Title>

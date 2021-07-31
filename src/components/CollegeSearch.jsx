@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import cutoff2020 from "../data/2020/cutoff.json";
-import { InputGroup, FormControl, Button } from "react-bootstrap";
+import { InputGroup, FormControl, Row, Col, Container } from "react-bootstrap";
 import DataTable from "react-data-table-component";
 import _ from "lodash";
 import { NavLink, useParams } from "react-router-dom";
@@ -25,10 +25,7 @@ const CollegeSearch = () => {
 
 	const filterIt = () => {
 		const filteredArray = _.filter(cutoff2020, (clg) => {
-			return (
-				clg.con.toUpperCase().includes(clgName.toUpperCase()) ||
-				clg.coc === parseInt(clgName)
-			);
+			return clg.con.toUpperCase().includes(clgName.toUpperCase()) || clg.coc === parseInt(clgName);
 		});
 		return _.uniqBy(filteredArray, "coc");
 	};
@@ -54,21 +51,20 @@ const CollegeSearch = () => {
 	];
 	return (
 		<React.Fragment>
-			<InputGroup className="my-3">
-				<InputGroup.Text id="basic-addon1" className="bg-primary text-white">
-					College Name or
-					<br />
-					Address or Counseling Code
-				</InputGroup.Text>
-				<FormControl
-					aria-label="College Name/Address"
-					aria-describedby="basic-addon1"
-					value={clgName}
-					onChange={clgNameChanged}
-					placeholder="🔍 Search here"
-					autoFocus
-				/>
-			</InputGroup>
+			<Container>
+				<Row className="my-3">
+					<Col md={12} lg={2}>
+						<Row className="text-center">
+							<InputGroup.Text id="basic-addon1" className="bg-success text-white text-wrap">
+								College Name or Address or Counseling Code
+							</InputGroup.Text>
+						</Row>
+					</Col>
+					<Col md={12} lg={10} className="align-items-stretch d-flex px-0">
+						<FormControl aria-label="College Name/Address" aria-describedby="basic-addon1" value={clgName} onChange={clgNameChanged} placeholder="🔍 Search here" autoFocus />
+					</Col>
+				</Row>
+			</Container>
 			<DataTable
 				/*title="TNEA Cutoff 2020"*/
 				columns={columns}
